@@ -15,6 +15,7 @@
       };
       //Generation
       Terrain.prototype.generate = function(roughness) {
+        //Corners 
         var self = this;
         this.set(0, 0, self.max);
         this.set(this.max, 0, self.max / 2);
@@ -68,6 +69,8 @@
       Terrain.prototype.draw = function(ctx, width, height) {
         var self = this;
         var waterVal = this.size * 0.3;
+        //Okayy... First, we create nested loops that drew rectangles from the 'back' (y = 0) to the 'front' (y = this.size) of our map. 
+        //This is the same loop you'd use to render a simple, flat, top-down square.
         for (var y = 0; y < this.size; y++) {
           for (var x = 0; x < this.size; x++) {
             var val = this.get(x, y);
