@@ -7,15 +7,18 @@
     <canvas id='display' width='1' height='1' />
 
     <script>
+    //Main function (this is really a class)
       function Terrain(detail) {
-        this.size = Math.pow(2, detail) + 1;
-        this.max = this.size - 1;
-        this.map = new Float32Array(this.size * this.size);
+        this.size = Math.pow(2, detail) + 1; //level of detail                            
+        this.max = this.size - 1; //Max diamonds in block
+        this.map = new Float32Array(this.size * this.size); //Map Size
       }
+      //Kek
       Terrain.prototype.get = function(x, y) {
         if (x < 0 || x > this.max || y < 0 || y > this.max) return -1;
         return this.map[x + this.size * y];
       };
+      //
       Terrain.prototype.set = function(x, y, val) {
         this.map[x + this.size * y] = val;
       };
@@ -109,12 +112,13 @@
           };
         }
       };
+      //Executing and rendering everything
       var display = document.getElementById('display');
       var ctx = display.getContext('2d');
       var width = display.width = window.innerWidth;
       var height = display.height = window.innerHeight;
       var terrain = new Terrain(9);
-      terrain.generate(0.7);
+      terrain.generate(.7);
       terrain.draw(ctx, width, height);
     </script>
 
